@@ -1,0 +1,53 @@
+# How to see the topic in rosbag .db3
+ros2 bag info <filename>
+# How to play the .db3 file
+ros2 bag play <filename>
+#visulize bagfile 
+octovis <filename>
+=====================================
+#save the octomap from rosbag file
+ros2 launch octomap_server octomap_webots_launch.py
+ros2 bag play <filename> --loop
+ros2 run octomap_server octomap_saver_node --ros-args -p octomap_path:=(path for saving octomap)
+=======================================
+https://github.com/RRL-ALeRT/octo_navigation
+
+
+=====================================
+#run the robot in simulation
+ros2 launch webots_spot spot_launch.py
+
+
+ros2 launch webots_spot octo_nav_launch.py 
+#if want to change the nav method, need to change in mbf_octo_nav.yaml
+#-> ros2_ws/webots_ros2_spot/launch/octo_nav_launch.py->mbf_octo_navigation_server_launch.py ->params/mbf_octo_nav.yaml 
+
+ros2 launch octomap_server octomap_webots_launch.py 
+
+ros2 launch mapconversion map_conversion.launch.py
+#inside can change the limit detection height and the slope
+
+ros2 action send_goal /move_base_flex/move_base mbf_msgs/action/MoveBase "t<tab>
+
+
+==================================== 3D planner
+ros2 launch webots_spot spot_launch.py
+
+ros2 launch webots_spot octo_nav_launch.py 
+
+ros2 launch octomap_server octomap_webots_launch.py 
+
+ros2 run bringup exe_path_node
+
+ros2 run astar_octo_planner posture_manager
+
+==================================== 2D planner
+ros2 launch webots_spot spot_launch.py
+
+ros2 launch webots_spot octo_nav_launch.py 
+
+ros2 launch octomap_server octomap_webots_launch.py 
+
+ros2 launch mapconversion map_conversion.launch.py
+
+ros2 run bringup exe_path_node
