@@ -1,6 +1,6 @@
 # spot_3d_planner
 3D planner with squat function,  RRL-ALeRT 
-# octo_navigation
+
 
 ## Installation
 
@@ -71,6 +71,8 @@ recovery_behaviors: []"
 send 2D nav goal in RVIZ windows
 
 ### experimental result
-![Spot Navigation Demo](docs/2Dplanner.gif)
+| 2D Navigation (A* Planner) | 3D Navigation (Crouch Algorithm) |
+| :---: | :---: |
+| ![2D Demo](./docs/2Dplanner.gif) | ![3D Demo](./docs/3Dplanner.gif)|
 
 Based on: https://github.com/skpawar1305/easy_3D_navigation/blob/main/plan_3d_path.py
